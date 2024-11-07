@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.github.javafaker.Faker;
 import api.endpoints.UserEndpoints;
 import api.payload.User;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class UserTest {
@@ -35,7 +34,6 @@ public class UserTest {
 	public void testgetReqByUsername() {
 		Response res =UserEndpoints.readUser(this.userPayload.getUsername()).then().extract().response();
 		res.then().log().body();
-		JsonPath data = new JsonPath(res.toString());
 		Assert.assertEquals(res.statusCode(), 200);
 	}
 	@Test(priority = 3)
